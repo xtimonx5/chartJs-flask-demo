@@ -1,0 +1,8 @@
+<script>
+    {% autoescape false %}
+    window.chartData = JSON.parse('{{context.points_json}}');
+    {% endautoescape %}
+</script>
+<canvas id="myChart" width="400" height="400"></canvas>
+
+

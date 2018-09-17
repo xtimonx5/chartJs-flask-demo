@@ -1,0 +1,10 @@
+{% if show_error %}
+    <h3>File is not valid, try again</h3>
+{% endif %}
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <label for="file_to_parse">Upload your file</label>
+    <p><input id="file_to_parse" type="file" name="file_to_parse">
+    <p>
+        <button type="submit">Submit</button>
+</form>

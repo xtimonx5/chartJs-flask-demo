@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="/static/styles.css">
+
+<div class="result">
+    <h1> Result of import </h1>
+    <div>
+        <button id="swapItemsBtn"> Swap positions</button>
+    </div>
+
+    <div id="resultTable" class="result__table" style="width: 45%; left: 3%">
+        <div id="resultTableHeader" class="result__table__header">
+            Table (drag me)
+        </div>
+        {% include 'result_table.html' %}
+    </div>
+    <div id="resultDiagram" class="result__diagramm2" style="width: 45%; right: 3%;">
+        <div id="resultDiagramHeader">
+            Graph (I'm also draggable)
+        </div>
+        {% include 'result_diagram.html' %}
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="/static/dragElement.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="/static/chart.js"></script>
