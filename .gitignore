@@ -1,3 +1,5 @@
 venv/*
 uploads/*
 !uploads/.gitkeep
+.idea
+__pycache__
