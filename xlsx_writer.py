@@ -51,5 +51,3 @@ class XlsxWriter(object):
 
         # Insert the chart into the worksheet (with an offset).
         ws.insert_chart('C2', chart1, {'x_offset': 25, 'y_offset': 10})
-
-        self.wb.close()
