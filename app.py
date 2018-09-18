@@ -1,22 +1,13 @@
-from flask import Flask, url_for
+import os
+
+from flask import Flask, send_from_directory, current_app
 from flask import render_template
 from flask import request
+
 from file_parser import FileParser
+from xlsx_writer import REPORTS_ROOT
 
 app = Flask(__name__)
-
-
-@app.after_request
-def add_header(r):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    r.headers["Pragma"] = "no-cache"
-    r.headers["Expires"] = "0"
-    r.headers['Cache-Control'] = 'public, max-age=0'
-    return r
 
 
 @app.route('/')
@@ -34,11 +25,18 @@ def upload_file():
         if file_parser.is_valid():
             context = {
                 'petl_table': file_parser.get_petl_table(),
-                'points_json': file_parser.get_points_json()
+                'points_json': file_parser.get_points_json(),
+                'xlsx_report': file_parser.get_xlsx_report(),
             }
             return render_template('result.html', context=context)
         else:
             return file_upload(show_error=True)
+
+
+@app.route('/reports/<path:filename>', methods=['GET', 'POST'])
+def download(filename):
+    uploads = os.path.join(current_app.root_path, REPORTS_ROOT)
+    return send_from_directory(directory=uploads, filename=filename)
 
 
 if __name__ == '__main__':
